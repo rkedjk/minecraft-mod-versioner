@@ -5,19 +5,6 @@
         {
           "checked": true,
           "checking": false,
-          "icon_url": "https://cdn.modrinth.com/data/AANobbMI/295862f4724dc3f78df3447ad6072b2dcd3ef0c9_96.webp",
-          "slug": "sodium",
-          "supported": true,
-          "title": "Sodium",
-          "versions": {
-            "1.21.1": true,
-            "1.21.11": true,
-            "1.21.4": true
-          }
-        },
-        {
-          "checked": true,
-          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/rI0hvYcd/5c866549318e907bbfe0d525afe43cb17a36a481.png",
           "slug": "visuality",
           "title": "Visuality",
@@ -25,7 +12,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -37,7 +26,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -49,7 +40,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -61,7 +54,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -73,7 +68,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -85,7 +82,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -97,7 +96,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -109,7 +110,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "optional"
         },
         {
           "checked": true,
@@ -121,7 +124,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -133,7 +138,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -145,7 +152,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -157,7 +166,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "optional"
         },
         {
           "checked": true,
@@ -169,7 +180,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -181,7 +194,9 @@
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -193,115 +208,331 @@
             "1.21.1": true,
             "1.21.11": false,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
-          "title": "Legendary Tooltips",
-          "slug": "legendary-tooltips",
+          "checked": true,
+          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/atHH8NyV/bd47257c8d4aca0e04c43269e5beb7af680b144b_96.webp",
-          "checked": true,
+          "slug": "legendary-tooltips",
+          "title": "Legendary Tooltips",
           "versions": {
             "1.21.1": true,
             "1.21.11": false,
             "1.21.4": true
           },
-          "checking": false
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
-          "title": "Jade 🔍",
-          "slug": "jade",
+          "checked": true,
+          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/nvQzSEkH/b04217bc2b7dc524c4d12f81ff42cc1cefb9b0fc_96.webp",
-          "checked": true,
+          "slug": "jade",
+          "title": "Jade 🔍",
           "versions": {
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
           },
-          "checking": false
+          "client_side": "optional",
+          "server_side": "optional"
         },
         {
-          "title": "AppleSkin",
-          "slug": "appleskin",
+          "checked": true,
+          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/EsAfCjCV/icon.png",
-          "checked": true,
+          "slug": "appleskin",
+          "title": "AppleSkin",
           "versions": {
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
           },
-          "checking": false
+          "client_side": "optional",
+          "server_side": "optional"
         },
         {
-          "title": "Smooth Gui",
-          "slug": "smooth-gui",
+          "checked": true,
+          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/j6yrZogB/3394d2befe98b3fb21b1380dd6144f5abb0730c3_96.webp",
-          "checked": true,
+          "slug": "smooth-gui",
+          "title": "Smooth Gui",
           "versions": {
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
           },
-          "checking": false
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
-          "title": "Camera Overhaul",
-          "slug": "cameraoverhaul",
+          "checked": true,
+          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/m0oRwcZx/bebf0a98167f737c643abe85382a7ec14d264cbf.png",
-          "checked": true,
+          "slug": "cameraoverhaul",
+          "title": "Camera Overhaul",
           "versions": {
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
           },
-          "checking": false
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
-          "title": "Better Third Person",
-          "slug": "better-third-person",
-          "icon_url": "https://cdn.modrinth.com/data/G1s2WpNo/icon.png",
           "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/G1s2WpNo/icon.png",
+          "slug": "better-third-person",
+          "title": "Better Third Person",
           "versions": {
             "1.21.1": true,
             "1.21.11": false,
             "1.21.4": true
           },
-          "checking": false
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
-          "title": "RightClickHarvest",
-          "slug": "rightclickharvest",
+          "checked": true,
+          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/Cnejf5xM/b6e535989217836c2adc49b06f4b3c8f429afda3_96.webp",
-          "checked": true,
+          "slug": "rightclickharvest",
+          "title": "RightClickHarvest",
           "versions": {
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
           },
-          "checking": false
+          "client_side": "unsupported",
+          "server_side": "required"
         },
         {
-          "title": "Controlify (Controller support)",
-          "slug": "controlify",
+          "checked": true,
+          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/DOUdJVEm/5a6c126c4c761ba3e8e9d3ef09a68e16ff60ff22_96.webp",
-          "checked": true,
+          "slug": "controlify",
+          "title": "Controlify (Controller support)",
           "versions": {
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
           },
-          "checking": false
+          "client_side": "required",
+          "server_side": "optional"
         },
         {
-          "title": "Terralith",
-          "slug": "terralith",
-          "icon_url": "https://cdn.modrinth.com/data/8oi3bsk5/1959d924a1088944bbf07a06ba523726112d7e7a_96.webp",
           "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/8oi3bsk5/1959d924a1088944bbf07a06ba523726112d7e7a_96.webp",
+          "slug": "terralith",
+          "title": "Terralith",
           "versions": {
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
           },
-          "checking": false
+          "client_side": "optional",
+          "server_side": "required"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/uCdwusMi/e716cda9bb568b5373ff76e363fb4c6d7278fba6_96.webp",
+          "slug": "distanthorizons",
+          "title": "Distant Horizons",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "client_side": "optional",
+          "server_side": "optional"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/w7ThoJFB/e2de67a0bfb9e8aa2347982ab3ec5463f26cca31_96.webp",
+          "slug": "zoomify",
+          "title": "Zoomify",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/ZX66K16c/1c0ee069ad454ad084493cd927eb2c67b2dc2ad9_96.webp",
+          "slug": "pick-up-notifier",
+          "title": "Pick Up Notifier",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "client_side": "required",
+          "server_side": "optional"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/LLzI0kbc/3d07f38b41884d52a14ef136345f59694a9c29da_96.webp",
+          "slug": "inventory-hud+-by-soulspeed",
+          "title": "Inventory Hud +",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/kqJFAPU9/2347cd97d4d4a5f87842dccebd8eba211d77d37a_96.webp",
+          "slug": "better-mount-hud",
+          "title": "Better Mount HUD",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/x02cBj9Y/7ee93fac37512f4f04aa82f15deada7b2ca9269f.png",
+          "slug": "status-effect-bars",
+          "title": "Status Effect Bars",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/bEpr0Arc/25b5529d7a3b030ac136a6ce879d8ed2a1aa4a8d.png",
+          "slug": "litematica",
+          "title": "Litematica",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/JygyCSA4/07db2203f74b2adc775822c2edf577b343df04f8_96.webp",
+          "slug": "item-scroller",
+          "title": "Item Scroller",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/NNAgCjsB/7873452d6cede4daed12da3d7d8c193ab88b4fd6_96.webp",
+          "slug": "entityculling",
+          "title": "Entity Culling",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/5ZwdcRci/e57b6b451425692ac17ad322d5e14bea686a383a_96.webp",
+          "slug": "immediatelyfast",
+          "title": "ImmediatelyFast",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/TjSm1wrD/e1d2433476995be1b1a94ff1afaf6167752274ae_96.webp",
+          "slug": "modernfix-mvus",
+          "title": "ModernFix-mVUS",
+          "versions": {
+            "1.21.1": false,
+            "1.21.11": true,
+            "1.21.4": false
+          },
+          "client_side": "optional",
+          "server_side": "optional"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/nmDcB62a/2af94de5e08ae54567ee86b968fc7ce076d9fee5_96.webp",
+          "slug": "modernfix",
+          "title": "ModernFix",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": true
+          },
+          "client_side": "optional",
+          "server_side": "optional"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/AuFCCYMx/eb028d2db6143709804cd11d0ebe1f1adf52f1c1.png",
+          "slug": "elytra-armor",
+          "title": "Armored Elytra",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "client_side": "optional",
+          "server_side": "required"
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "client_side": "required",
+          "icon_url": "https://cdn.modrinth.com/data/AANobbMI/295862f4724dc3f78df3447ad6072b2dcd3ef0c9_96.webp",
+          "server_side": "unsupported",
+          "slug": "sodium",
+          "title": "Sodium",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
         }
       ],
       "name": "Supported",
@@ -319,7 +550,9 @@
             "1.21.1": true,
             "1.21.11": false,
             "1.21.4": true
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -331,7 +564,9 @@
             "1.21.1": true,
             "1.21.11": false,
             "1.21.4": false
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -343,7 +578,9 @@
             "1.21.1": true,
             "1.21.11": false,
             "1.21.4": false
-          }
+          },
+          "client_side": "required",
+          "server_side": "required"
         },
         {
           "checked": true,
@@ -355,7 +592,9 @@
             "1.21.1": true,
             "1.21.11": false,
             "1.21.4": false
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         },
         {
           "checked": true,
@@ -367,7 +606,9 @@
             "1.21.1": true,
             "1.21.11": false,
             "1.21.4": false
-          }
+          },
+          "client_side": "required",
+          "server_side": "unsupported"
         }
       ],
       "name": "Unsupported",
