@@ -1,0 +1,115 @@
+{
+  "categories": [
+    {
+      "mods": [
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/AANobbMI/295862f4724dc3f78df3447ad6072b2dcd3ef0c9_96.webp",
+          "slug": "sodium",
+          "supported": true,
+          "title": "Sodium",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "title": "Auditory Continued",
+          "slug": "auditory-continued",
+          "icon_url": "https://cdn.modrinth.com/data/UafsfA4K/d590a7fe2e9ff5c2bba2fa25b06258f45a18a87d_96.webp",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          },
+          "checking": false
+        },
+        {
+          "title": "Visuality",
+          "slug": "visuality",
+          "icon_url": "https://cdn.modrinth.com/data/rI0hvYcd/5c866549318e907bbfe0d525afe43cb17a36a481.png",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Effective",
+          "slug": "effective",
+          "icon_url": "https://cdn.modrinth.com/data/pcPXJeZi/f139dfec708b7db41de0efa3da0e7989de9b4c3a_96.webp",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          },
+          "checking": false
+        },
+        {
+          "title": "Wakes",
+          "slug": "wakes",
+          "icon_url": "https://cdn.modrinth.com/data/dlNu0RQY/46be95a28f27da8a98e9721b6695703fcec2d7d8_96.webp",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Not Enough Animations",
+          "slug": "not-enough-animations",
+          "icon_url": "https://cdn.modrinth.com/data/MPCX6s5C/b97fd5f7a893165052408b747286d6eb38d57abb_96.webp",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Falling Leaves",
+          "slug": "fallingleaves",
+          "icon_url": "https://cdn.modrinth.com/data/WhbRG4iK/58f5b66cb54787d9c25228d667f61144371c3867_96.webp",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "3D Skin Layers",
+          "slug": "3dskinlayers",
+          "icon_url": "https://cdn.modrinth.com/data/zV5r3pPn/ff7010d4ec0275609866c8b0f603b25e25949c08_96.webp",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        }
+      ],
+      "name": "New Category"
+    },
+    {
+      "name": "New Category",
+      "mods": []
+    }
+  ],
+  "targetVersions": [
+    "1.21.1",
+    "1.21.4",
+    "1.21.11"
+  ]
+}
