@@ -2,97 +2,78 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ModStacker 2.0 🛠️</title>
+
+    <!-- Внешние зависимости -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Наши файлы -->
+    <link href="/static/css/style.css" rel="stylesheet">
     <script src="/static/js/app.js"></script>
-    <style>
-        [x-cloak] { display: none !important; }
-        .scroll-hide::-webkit-scrollbar { display: none; }
-
-        .drop-target-active {
-            background-color: rgba(59, 130, 246, 0.2) !important;
-            border-color: #3b82f6 !important;
-            transform: scale(1.02);
-        }
-
-        /* Цветовая индикация окружения */
-        .env-required {
-            background: rgba(34, 197, 94, 0.15);
-            color: #4ade80;
-            border: 1px solid rgba(34, 197, 94, 0.4);
-        }
-        .env-optional {
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-            border: 1px solid rgba(59, 130, 246, 0.4);
-        }
-        .env-unsupported {
-            background: rgba(239, 68, 68, 0.15);
-            color: #f87171;
-            border: 1px solid rgba(239, 68, 68, 0.4);
-        }
-
-        .env-badge {
-            font-size: 0.60rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            white-space: nowrap;
-            letter-spacing: 0.03em;
-        }
-    </style>
 </head>
-<body class="bg-slate-950 text-slate-200 min-h-screen font-sans selection:bg-blue-500/30"
-      x-data="app()" x-init="initApp()">
 
-    <!-- Верхняя панель -->
-    <div class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 shadow-xl h-16 flex items-center px-6 justify-between">
-        <div class="flex items-center gap-4">
-            <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 text-transparent bg-clip-text">
-                <i class="fa-solid fa-layer-group mr-2 text-blue-500"></i>ModStacker
-            </h1>
-            <div class="h-6 w-px bg-slate-700 mx-2"></div>
+<body class="bg-slate-950 text-slate-200 min-h-screen font-sans" x-data="app()" x-init="initApp()" x-cloak>
 
-            <div class="flex items-center gap-2 overflow-x-auto scroll-hide max-w-xl">
-                <template x-for="(ver, idx) in targetVersions" :key="ver">
-                    <span class="text-xs font-mono bg-slate-800 border border-slate-700 px-2 py-1 rounded-md text-slate-300 flex items-center gap-2 group cursor-default">
-                        <span x-text="ver"></span>
-                        <button @click="removeVersion(idx)" class="text-slate-500 hover:text-red-400 opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-times"></i></button>
-                    </span>
-                </template>
-                <div class="flex items-center">
-                    <input type="text" x-model="newVersion" @keyup.enter="addVersion()" placeholder="+ ver"
+    <!-- ==================== HEADER ==================== -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 shadow-xl h-16">
+        <div class="h-full px-6 flex items-center justify-between">
+
+            <!-- Левая часть: Лого + Версии -->
+            <div class="flex items-center gap-4">
+                <h1 class="text-xl font-bold gradient-text">
+                    <i class="fa-solid fa-layer-group mr-2 text-blue-500"></i>ModStacker
+                </h1>
+                <div class="h-6 w-px bg-slate-700"></div>
+
+                <!-- Список версий -->
+                <div class="flex items-center gap-2 overflow-x-auto scroll-hide max-w-xl">
+                    <template x-for="(ver, idx) in targetVersions" :key="ver">
+                        <span class="text-xs font-mono bg-slate-800 border border-slate-700 px-2 py-1 rounded-md text-slate-300 flex items-center gap-2 group">
+                            <span x-text="ver"></span>
+                            <button @click="removeVersion(idx)"
+                                    class="text-slate-500 hover:text-red-400 opacity-0 group-hover:opacity-100 transition"
+                                    title="Удалить версию">
+                                <i class="fa-solid fa-times"></i>
+                            </button>
+                        </span>
+                    </template>
+
+                    <!-- Добавление новой версии -->
+                    <input type="text"
+                           x-model="newVersion"
+                           @keyup.enter="addVersion()"
+                           placeholder="+ ver"
                            class="w-16 bg-transparent border-b border-slate-700 text-xs focus:border-blue-500 outline-none px-1 text-center transition">
                 </div>
             </div>
+
+            <!-- Правая часть: Статус сохранения + Кнопка -->
+            <div class="flex items-center gap-3">
+                <span class="text-xs text-slate-500 transition-opacity" :class="isSaving ? 'opacity-100' : 'opacity-0'">
+                    <i class="fa-solid fa-cloud-arrow-up animate-bounce"></i> Сохранение...
+                </span>
+                <button @click="saveData()"
+                        class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition shadow-lg shadow-blue-900/20">
+                    Сохранить
+                </button>
+            </div>
         </div>
+    </header>
 
-        <div class="flex items-center gap-3">
-            <span class="text-xs text-slate-500 transition-opacity duration-300" :class="isSaving ? 'opacity-100' : 'opacity-0'">
-                <i class="fa-solid fa-cloud-arrow-up animate-bounce"></i> Сохранение...
-            </span>
-            <button @click="saveData()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition shadow-lg shadow-blue-900/20">
-                Сохранить
-            </button>
-        </div>
-    </div>
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="pt-20 px-6 pb-10 flex gap-6 h-screen">
 
-    <div class="pt-20 px-6 pb-10 flex gap-6 h-screen box-border">
-
-        <!-- КОЛОНКА 1: Навигация -->
-        <div class="w-64 flex-shrink-0 flex flex-col gap-4 h-[calc(100vh-100px)] sticky top-20">
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-widest px-2">Категории</div>
+        <!-- ========== SIDEBAR: Категории ========== -->
+        <aside class="w-64 flex-shrink-0 flex flex-col gap-4 h-[calc(100vh-100px)] sticky top-20">
+            <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest px-2">Категории</h2>
 
             <div class="overflow-y-auto pr-2 space-y-2 flex-1 scroll-hide">
+                <!-- Список категорий -->
                 <template x-for="(cat, idx) in data.categories" :key="idx">
-                    <div class="p-3 rounded-lg border border-slate-800 bg-slate-900/50 hover:bg-slate-800 hover:border-slate-700 transition cursor-pointer group relative"
-                         :id="'sidebar-cat-' + idx"
+                    <div class="category-card p-3 rounded-lg border border-slate-800 bg-slate-900/50 hover:bg-slate-800 hover:border-slate-700 transition cursor-pointer group"
                          @click="scrollToCategory(idx)"
                          @dragover.prevent="$el.classList.add('drop-target-active')"
                          @dragleave="$el.classList.remove('drop-target-active')"
@@ -109,159 +90,199 @@
                     </div>
                 </template>
 
-                <button @click="addCategory()" class="w-full py-3 border border-dashed border-slate-700 rounded-lg text-slate-500 hover:text-blue-400 hover:border-blue-500/50 transition text-sm flex items-center justify-center gap-2">
+                <!-- Кнопка добавления категории -->
+                <button @click="addCategory()"
+                        class="w-full py-3 border border-dashed border-slate-700 rounded-lg text-slate-500 hover:text-blue-400 hover:border-blue-500/50 transition text-sm flex items-center justify-center gap-2">
                     <i class="fa-solid fa-plus"></i> Новая категория
                 </button>
             </div>
-        </div>
+        </aside>
 
-        <!-- КОЛОНКА 2: Основной контент -->
-        <div class="flex-1 overflow-y-auto pr-2 h-[calc(100vh-100px)] scroll-hide" id="main-content">
+        <!-- ========== CENTER: Список модов ========== -->
+        <section class="flex-1 overflow-y-auto pr-2 h-[calc(100vh-100px)] scroll-hide">
             <div class="space-y-8">
                 <template x-for="(cat, catIndex) in data.categories" :key="catIndex">
-                    <div :id="'cat-' + catIndex" class="scroll-mt-24">
-                        <div class="flex items-center gap-4 mb-4 border-b border-slate-800 pb-2">
-                            <div class="text-2xl font-bold text-slate-400 font-mono select-none opacity-20" x-text="(catIndex + 1).toString().padStart(2, '0')"></div>
-                            <input x-model="cat.name" @change="saveData()"
+                    <article :id="'cat-' + catIndex" class="scroll-mt-24">
+
+                        <!-- Заголовок категории -->
+                        <header class="flex items-center gap-4 mb-4 border-b border-slate-800 pb-2">
+                            <div class="text-2xl font-bold text-slate-400 font-mono select-none opacity-20"
+                                 x-text="(catIndex + 1).toString().padStart(2, '0')"></div>
+
+                            <input x-model="cat.name"
+                                   @change="saveData()"
                                    class="bg-transparent text-xl font-bold text-slate-200 focus:text-blue-400 outline-none w-full placeholder-slate-600"
                                    placeholder="Название категории...">
 
-                            <div class="flex gap-2">
-                                <button @click="cat.showExport = !cat.showExport" class="p-2 text-slate-500 hover:text-blue-400 transition bg-slate-900 rounded-lg">
+                            <div class="flex gap-2 flex-shrink-0">
+                                <button @click="cat.showExport = !cat.showExport"
+                                        class="p-2 text-slate-500 hover:text-blue-400 transition bg-slate-900 rounded-lg"
+                                        title="Экспорт">
                                     <i class="fa-solid fa-code"></i>
                                 </button>
-                                <button @click="deleteCategory(catIndex)" class="p-2 text-slate-500 hover:text-red-500 transition bg-slate-900 rounded-lg">
+                                <button @click="deleteCategory(catIndex)"
+                                        class="p-2 text-slate-500 hover:text-red-500 transition bg-slate-900 rounded-lg"
+                                        title="Удалить категорию">
                                     <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </header>
+
+                        <!-- Панель экспорта -->
+                        <div x-show="cat.showExport" x-collapse class="mb-4 bg-slate-950 border border-slate-800 rounded-lg p-4 fade-in">
+                            <div class="flex justify-between mb-2 items-center">
+                                <span class="text-xs font-bold text-slate-500">EXPORT OPTIONS</span>
+                            </div>
+
+                            <!-- Текстовый список ссылок -->
+                            <div class="mb-3">
+                                <label class="text-xs text-slate-600 mb-1 block">URL List</label>
+                                <textarea readonly
+                                          class="w-full h-20 bg-slate-900 text-xs font-mono text-slate-400 border-none rounded outline-none resize-none p-2"
+                                          x-text="exportCategory(cat)"
+                                          @click="$el.select()"></textarea>
+                            </div>
+
+                            <!-- Кнопки действий -->
+                            <div class="flex gap-2">
+                                <button @click="exportMrpack(cat)"
+                                        class="flex-1 bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-download"></i> Download .mrpack
+                                </button>
+                                <button @click="navigator.clipboard.writeText(exportCategory(cat))"
+                                        class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-lg text-xs font-bold transition">
+                                    <i class="fa-solid fa-copy"></i> Copy
                                 </button>
                             </div>
                         </div>
 
-                        <div x-show="cat.showExport" x-collapse class="mb-4 bg-slate-950 border border-slate-800 rounded-lg p-4">
-                             <div class="flex justify-between mb-2">
-                                <span class="text-xs font-bold text-slate-500">LINKS FOR IMPORT</span>
-                                <button @click="navigator.clipboard.writeText(exportCategory(cat))" class="text-xs text-blue-500 hover:underline">Copy</button>
-                             </div>
-                             <textarea readonly class="w-full h-20 bg-slate-900 text-xs font-mono text-slate-400 border-none rounded outline-none resize-none p-2"
-                                       x-text="exportCategory(cat)" @click="$el.select()"></textarea>
-                        </div>
-
-                        <!-- =========== ОБНОВЛЕННЫЙ СПИСОК МОДОВ =========== -->
+                        <!-- Сетка модов -->
                         <div class="grid grid-cols-1 xl:grid-cols-2 gap-3 min-h-[50px]"
                              @dragover.prevent
                              @drop="handleDrop($event, catIndex)">
 
+                            <!-- Карточка мода -->
                             <template x-for="(mod, modIndex) in cat.mods" :key="mod.slug">
-                                <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 hover:border-slate-600 transition group relative flex gap-3"
+                                <div class="mod-card bg-slate-900 border border-slate-800 rounded-xl p-3 hover:border-slate-600 transition group relative flex gap-3"
                                      draggable="true"
                                      @dragstart="handleDragStart($event, catIndex, modIndex)">
 
-                                    <!-- Иконка -->
+                                    <!-- Иконка мода -->
                                     <div class="relative w-14 h-14 flex-shrink-0">
                                         <img :src="mod.icon_url || 'https://cdn.modrinth.com/data/AANobbMI/icon.png'"
+                                             :alt="mod.title"
                                              class="w-14 h-14 rounded-lg bg-slate-800 object-cover border border-slate-700">
-                                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center cursor-grab active:cursor-grabbing rounded-lg">
+                                        <div class="icon-overlay">
                                             <i class="fa-solid fa-up-down-left-right text-white text-sm"></i>
                                         </div>
                                     </div>
 
-                                    <!-- Информация -->
-                                    <!-- Информация о моде (замените блок внутри карточки) -->
-<div class="flex-1 min-w-0 flex flex-col justify-between">
-    <!-- Заголовок -->
-    <h3 class="font-bold text-sm text-slate-200 truncate mb-2" x-text="mod.title"></h3>
+                                    <!-- Информация о моде -->
+                                    <div class="flex-1 min-w-0 flex flex-col justify-between">
+                                        <!-- Название -->
+                                        <h3 class="font-bold text-sm text-slate-200 truncate mb-2"
+                                            x-text="mod.title"
+                                            :title="mod.title"></h3>
 
-    <!-- Блок окружения -->
-    <div class="mb-2">
-        <div class="text-[9px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Environment</div>
-        <div class="flex gap-1.5">
-            <span class="env-badge"
-                  :class="{
-                      'env-required': mod.client_side === 'required',
-                      'env-optional': mod.client_side === 'optional',
-                      'env-unsupported': mod.client_side === 'unsupported'
-                  }">
-                <i class="fa-solid fa-desktop"></i> Client
-            </span>
+                                        <!-- Окружение -->
+                                        <div class="mb-2">
+                                            <div class="text-[9px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Environment</div>
+                                            <div class="flex gap-1.5">
+                                                <span class="env-badge"
+                                                      :class="{
+                                                          'env-required': mod.client_side === 'required',
+                                                          'env-optional': mod.client_side === 'optional',
+                                                          'env-unsupported': mod.client_side === 'unsupported'
+                                                      }">
+                                                    <i class="fa-solid fa-desktop"></i> Client
+                                                </span>
+                                                <span class="env-badge"
+                                                      :class="{
+                                                          'env-required': mod.server_side === 'required',
+                                                          'env-optional': mod.server_side === 'optional',
+                                                          'env-unsupported': mod.server_side === 'unsupported'
+                                                      }">
+                                                    <i class="fa-solid fa-server"></i> Server
+                                                </span>
+                                            </div>
+                                        </div>
 
-            <span class="env-badge"
-                  :class="{
-                      'env-required': mod.server_side === 'required',
-                      'env-optional': mod.server_side === 'optional',
-                      'env-unsupported': mod.server_side === 'unsupported'
-                  }">
-                <i class="fa-solid fa-server"></i> Server
-            </span>
-        </div>
-    </div>
+                                        <!-- Версии -->
+                                        <div>
+                                            <div class="text-[9px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Versions</div>
+                                            <div class="flex items-center gap-1 flex-wrap">
+                                                <template x-if="!mod.checked">
+                                                    <button @click="checkMod(mod)"
+                                                            class="text-[10px] bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white px-2 py-1 rounded transition font-mono">
+                                                        Check
+                                                    </button>
+                                                </template>
 
-    <!-- Блок версий -->
-    <div>
-        <div class="text-[9px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Versions</div>
-        <div class="flex items-center gap-1 flex-wrap">
-            <template x-if="!mod.checked">
-                <button @click="checkMod(mod)" class="text-[10px] bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white px-2 py-1 rounded transition font-mono">
-                    Check
-                </button>
-            </template>
+                                                <template x-if="mod.checking">
+                                                    <div class="flex items-center gap-1 text-blue-500 text-xs">
+                                                        <i class="fa-solid fa-circle-notch fa-spin"></i>
+                                                        <span class="text-[10px]">Checking...</span>
+                                                    </div>
+                                                </template>
 
-            <template x-if="mod.checking">
-                <div class="flex items-center gap-1 text-blue-500 text-xs">
-                    <i class="fa-solid fa-circle-notch fa-spin"></i>
-                    <span class="text-[10px]">Checking...</span>
-                </div>
-            </template>
+                                                <template x-if="mod.checked && !mod.checking">
+                                                    <div class="flex gap-1 flex-wrap">
+                                                        <template x-for="ver in targetVersions" :key="ver">
+                                                            <span class="version-badge"
+                                                                  :class="mod.versions && mod.versions[ver] ? 'supported' : 'unsupported'"
+                                                                  :title="ver + ': ' + (mod.versions && mod.versions[ver] ? 'Supported' : 'Not supported')">
+                                                                <span x-text="ver"></span>
+                                                                <span x-text="mod.versions && mod.versions[ver] ? ' ✓' : ' ✗'"></span>
+                                                            </span>
+                                                        </template>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </div>
 
-            <template x-if="mod.checked && !mod.checking">
-                <div class="flex gap-1 flex-wrap">
-                    <template x-for="ver in targetVersions" :key="ver">
-                        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded border font-bold"
-                              :class="mod.versions && mod.versions[ver] ?
-                                  'bg-green-900/20 text-green-400 border-green-700' :
-                                  'bg-red-900/20 text-red-400 border-red-700'">
-                            <span x-text="ver"></span>
-                            <span x-text="mod.versions && mod.versions[ver] ? ' ✓' : ' ✗'"></span>
-                        </span>
-                    </template>
-                </div>
-            </template>
-        </div>
-    </div>
-</div>
-
-
-                                    <!-- Удалить -->
+                                    <!-- Кнопка удаления -->
                                     <button @click="cat.mods.splice(modIndex, 1); saveData()"
-                                            class="absolute top-2 right-2 text-slate-700 hover:text-red-500 px-2 opacity-0 group-hover:opacity-100 transition">
+                                            class="absolute top-2 right-2 text-slate-700 hover:text-red-500 px-2 opacity-0 group-hover:opacity-100 transition"
+                                            title="Удалить мод">
                                         <i class="fa-solid fa-times"></i>
                                     </button>
                                 </div>
                             </template>
 
-                            <div x-show="cat.mods.length === 0" class="col-span-full border-2 border-dashed border-slate-800 rounded-xl p-6 text-center text-slate-600 text-sm">
+                            <!-- Пустая категория -->
+                            <div x-show="cat.mods.length === 0"
+                                 class="col-span-full border-2 border-dashed border-slate-800 rounded-xl p-6 text-center text-slate-600 text-sm">
                                 <i class="fa-regular fa-folder-open text-2xl mb-2 opacity-50"></i><br>
-                                Перетащите сюда или на имя категории слева
+                                Перетащите сюда моды или добавьте через поиск
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </template>
 
+                <!-- Спейсер для комфортного скролла -->
                 <div class="h-20"></div>
             </div>
-        </div>
+        </section>
 
-        <!-- КОЛОНКА 3: Поиск -->
-        <div class="w-80 flex-shrink-0 h-[calc(100vh-100px)] sticky top-20 flex flex-col gap-4">
+        <!-- ========== RIGHT SIDEBAR: Поиск ========== -->
+        <aside class="w-80 flex-shrink-0 h-[calc(100vh-100px)] sticky top-20">
             <div class="bg-slate-900 border border-slate-800 rounded-xl flex flex-col h-full shadow-2xl overflow-hidden">
+
+                <!-- Поисковая строка -->
                 <div class="p-4 border-b border-slate-800 bg-slate-900 z-10">
                     <div class="relative">
                         <i class="fa-solid fa-search absolute left-3 top-3 text-slate-500"></i>
-                        <input type="text" x-model="searchQuery" @input.debounce.300ms="performSearch()"
+                        <input type="text"
+                               x-model="searchQuery"
+                               @input.debounce.300ms="performSearch()"
                                class="w-full bg-slate-950 border border-slate-800 rounded-lg pl-9 pr-3 py-2 text-sm focus:border-blue-500 outline-none transition placeholder-slate-600"
                                placeholder="Поиск модов...">
                         <i x-show="isSearching" class="fa-solid fa-spinner fa-spin absolute right-3 top-3 text-blue-500"></i>
                     </div>
                 </div>
 
+                <!-- Результаты поиска -->
                 <div class="flex-1 overflow-y-auto p-2 space-y-2 scroll-hide">
                     <template x-for="result in searchResults" :key="result.slug">
                         <div class="p-2 hover:bg-slate-800 rounded-lg flex gap-3 cursor-grab active:cursor-grabbing group transition"
@@ -269,7 +290,10 @@
                              @dragstart="handleSearchDragStart($event, result)"
                              @click="addToCategory(result)">
 
-                            <img :src="result.icon_url" class="w-10 h-10 rounded bg-slate-950 object-cover border border-slate-800">
+                            <img :src="result.icon_url"
+                                 :alt="result.title"
+                                 class="w-10 h-10 rounded bg-slate-950 object-cover border border-slate-800">
+
                             <div class="min-w-0 flex-1">
                                 <div class="font-bold text-sm text-slate-300 truncate" x-text="result.title"></div>
                                 <div class="text-[10px] text-slate-500 truncate" x-text="result.description"></div>
@@ -279,39 +303,56 @@
                                               'env-required': result.client_side === 'required',
                                               'env-optional': result.client_side === 'optional',
                                               'env-unsupported': result.client_side === 'unsupported'
-                                          }">C</span>
+                                          }"
+                                          title="Client">C</span>
                                     <span class="text-[9px] px-1 rounded env-badge"
                                           :class="{
                                               'env-required': result.server_side === 'required',
                                               'env-optional': result.server_side === 'optional',
                                               'env-unsupported': result.server_side === 'unsupported'
-                                          }">S</span>
+                                          }"
+                                          title="Server">S</span>
                                 </div>
                             </div>
-                            <button class="ml-auto text-blue-500 opacity-0 group-hover:opacity-100">
+
+                            <button class="ml-auto text-blue-500 opacity-0 group-hover:opacity-100" title="Добавить">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
                     </template>
 
-                    <div x-show="!searchQuery" class="h-full flex flex-col items-center justify-center text-slate-700 text-sm p-4 text-center">
+                    <!-- Плейсхолдер -->
+                    <div x-show="searchResults.length === 0 && !isSearching && searchQuery.length > 0"
+                         class="text-center text-slate-600 text-sm py-4">
+                        Ничего не найдено
+                    </div>
+
+                    <div x-show="!searchQuery"
+                         class="h-full flex flex-col items-center justify-center text-slate-700 text-sm p-4 text-center">
                         <i class="fa-brands fa-searchengin text-4xl mb-3 opacity-20"></i>
                         <p>Ищите моды здесь.<br>Перетаскивайте в центр или в сайдбар.</p>
                     </div>
                 </div>
 
+                <!-- Кнопка массовой проверки -->
                 <div class="p-4 border-t border-slate-800 bg-slate-900">
-                    <button @click="checkAll()" :disabled="isCheckingAll" class="w-full py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-bold text-sm transition flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button @click="checkAll()"
+                            :disabled="isCheckingAll || targetVersions.length === 0"
+                            class="w-full py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-bold text-sm transition flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
                         <span x-show="!isCheckingAll">🚀 Проверить всё</span>
-                        <span x-show="isCheckingAll"><i class="fa-solid fa-spinner fa-spin"></i> <span x-text="checkProgress"></span></span>
+                        <span x-show="isCheckingAll" class="flex items-center gap-2">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                            <span x-text="checkProgress"></span>
+                        </span>
                     </button>
                     <div class="text-[10px] text-center text-slate-600 mt-2 font-mono">
                         API Delay: <span x-text="apiDelay"></span>ms
                     </div>
                 </div>
             </div>
-        </div>
+        </aside>
 
-    </div>
+    </main>
+
 </body>
 </html>
