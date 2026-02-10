@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ModStacker 🛠️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 min-h-screen font-sans" x-data="app()" x-init="initApp()">
+
+    <!-- Верхняя панель -->
+    <div
+        class="sticky top-0 z-50 bg-slate-800 border-b border-slate-700 shadow-lg p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+            <i class="fa-solid fa-cube"></i> ModStacker
+        </h1>
+
+        <div class="flex gap-4">
+            <!-- Выбор версий для проверки -->
+            <div class="flex items-center gap-2 bg-slate-700 px-3 py-1 rounded">
+                <span class="text-sm text-slate-400">Target:</span>
+                <select x-model="targetVersion" @change="resetChecks()" class="bg-transparent font-mono outline-none">
+                    <option value="1.21.1">1.21.1</option>
+                    <option value="1.21.2">1.21.2</option>
+                    <option value="1.21.3">1.21.3</option>
+                    <option value="1.21.4">1.21.4</option>
+                </select>
+            </div>
+
+            <button @click="saveData()"
+                class="px-4 py-2 bg-green-600 hover:bg-green-500 rounded text-sm font-bold transition">
+                <i class="fa-solid fa-save"></i> Сохранить
+            </button>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-6 flex gap-6">
+
+        <!-- ЛЕВАЯ КОЛОНКА: Список модов -->
+        <div class="w-2/3 space-y-6">
+
+            <template x-for="(cat, catIndex) in data.categories" :key="catIndex">
+                <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+                    <!-- Заголовок категории -->
+                    <div class="p-4 bg-slate-800/50 flex justify-between items-center border-b border-slate-700">
+                        <h2 class="text-lg font-semibold flex items-center gap-2">
+                            <i class="fa-solid fa-folder-open text-yellow-500"></i>
+                            <input x-model="cat.name" class="bg-transparent outline-none focus:text-blue-400"
+                                placeholder="Category Name">
+                        </h2>
+                        <button @click="deleteCategory(catIndex)"
+                            class="text-red-500 hover:text-red-400 opacity-50 hover:opacity-100">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+
+                    <!-- Список модов в категории -->
+                    <div class="p-2 space-y-1">
+                        <template x-for="(mod, modIndex) in cat.mods" :key="mod.slug">
+                            <div
+                                class="group flex items-center justify-between p-3 rounded-lg hover:bg-slate-700 transition border border-transparent hover:border-slate-600">
+                                <div class="flex items-center gap-3">
+                                    <img :src="mod.icon_url || 'https://cdn.modrinth.com/user/icon/placeholder.png'"
+                                        class="w-8 h-8 rounded">
+                                    <div>
+                                        <div class="font-bold leading-tight" x-text="mod.title"></div>
+                                        <div class="text-xs text-slate-500 font-mono" x-text="mod.slug"></div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-4">
+                                    <!-- Статус версии -->
+                                    <div class="text-right">
+                                        <div x-show="!mod.checked"
+                                            class="text-xs text-slate-500 cursor-pointer hover:text-blue-400"
+                                            @click="checkMod(mod)">
+                                            Check <i class="fa-solid fa-rotate"></i>
+                                        </div>
+                                        <div x-show="mod.checking" class="text-yellow-500 animate-spin">
+                                            <i class="fa-solid fa-circle-notch"></i>
+                                        </div>
+                                        <div x-show="mod.checked && !mod.checking">
+                                            <span x-show="mod.supported"
+                                                class="text-green-400 font-bold bg-green-400/10 px-2 py-0.5 rounded text-xs">
+                                                ✅ Supported
+                                            </span>
+                                            <span x-show="!mod.supported"
+                                                class="text-red-400 font-bold bg-red-400/10 px-2 py-0.5 rounded text-xs">
+                                                ❌ No version
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <button @click="cat.mods.splice(modIndex, 1)"
+                                        class="text-slate-600 hover:text-red-500 transition">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Пустая категория -->
+                        <div x-show="cat.mods.length === 0" class="text-center p-4 text-slate-600 italic text-sm">
+                            Перетащите сюда моды или добавьте через поиск
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <button @click="addCategory()"
+                class="w-full py-3 border-2 border-dashed border-slate-700 text-slate-500 rounded-xl hover:border-slate-500 hover:text-slate-300 transition">
+                + Добавить категорию
+            </button>
+        </div>
+
+        <!-- ПРАВАЯ КОЛОНКА: Поиск -->
+        <div class="w-1/3">
+            <div class="sticky top-24 bg-slate-800 rounded-xl p-4 border border-slate-700 shadow-xl">
+                <h3 class="font-bold mb-4 text-slate-400 uppercase text-xs tracking-wider">Modrinth Search</h3>
+
+                <div class="relative">
+                    <input type="text" x-model="searchQuery" @input.debounce.500ms="performSearch()"
+                        placeholder="Найти мод..."
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm focus:border-blue-500 outline-none transition">
+                    <i x-show="isSearching"
+                        class="fa-solid fa-spinner fa-spin absolute right-3 top-3.5 text-slate-500"></i>
+                </div>
+
+                <!-- Результаты поиска -->
+                <div class="mt-4 space-y-2 max-h-[70vh] overflow-y-auto pr-1 scroll-hide">
+                    <template x-for="result in searchResults" :key="result.slug">
+                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-700 flex gap-3 hover:border-blue-500 transition group cursor-pointer"
+                            @click="addToCategory(result)">
+                            <img :src="result.icon_url" class="w-10 h-10 rounded bg-slate-800">
+                            <div class="flex-1">
+                                <div class="font-bold text-sm" x-text="result.title"></div>
+                                <div class="text-xs text-slate-500 line-clamp-1" x-text="result.description"></div>
+                            </div>
+                            <div class="flex items-center">
+                                <i
+                                    class="fa-solid fa-plus text-blue-500 opacity-0 group-hover:opacity-100 transition"></i>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Кнопка массовой проверки -->
+            <div class="mt-4">
+                <button @click="checkAll()"
+                    class="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-xl font-bold transition shadow-lg shadow-blue-900/20">
+                    <i class="fa-solid fa-list-check"></i> Проверить ВСЕ версии
+                </button>
+            </div>
+            <!-- Экспорт -->
+            <div class="mt-4 p-4 bg-slate-800 rounded-xl text-xs font-mono text-slate-400 break-all select-all cursor-pointer"
+                x-text="exportList()" @click="$el.select()">
+            </div>
+        </div>
+    </div>
+
+    <!-- JS LOGIC -->
+    <script>
+        function app() {
+            return {
+                data: { categories: [] },
+                searchQuery: '',
+                searchResults: [],
+                isSearching: false,
+                targetVersion: '1.21.1',
+
+                async initApp() {
+                    const resp = await fetch('/api/data');
+                    this.data = await resp.json();
+                },
+
+                async performSearch() {
+                    if (this.searchQuery.length < 2) return;
+                    this.isSearching = true;
+                    const resp = await fetch(`/api/search?q=${this.searchQuery}`);
+                    this.searchResults = await resp.json();
+                    this.isSearching = false;
+                },
+
+                addCategory() {
+                    this.data.categories.push({ name: 'New Category', mods: [] });
+                },
+
+                deleteCategory(idx) {
+                    if (confirm('Delete category?')) this.data.categories.splice(idx, 1);
+                },
+
+                addToCategory(mod) {
+                    // Добавляем в первую категорию по умолчанию
+                    if (this.data.categories.length === 0) this.addCategory();
+
+                    // Проверяем, нет ли уже такого
+                    const exists = this.data.categories.some(c => c.mods.some(m => m.slug === mod.slug));
+                    if (exists) { alert('Already added!'); return; }
+
+                    this.data.categories[0].mods.push({
+                        title: mod.title,
+                        slug: mod.slug,
+                        icon_url: mod.icon_url,
+                        checked: false,
+                        supported: false,
+                        checking: false
+                    });
+                    this.searchQuery = '';
+                    this.searchResults = [];
+                    this.checkMod(this.data.categories[0].mods[this.data.categories[0].mods.length - 1]);
+                    this.saveData();
+                },
+
+                async checkMod(mod) {
+                    mod.checking = true;
+                    const resp = await fetch('/api/check_version', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ slug: mod.slug, versions: [this.targetVersion] })
+                    });
+                    const result = await resp.json();
+
+                    mod.supported = result[this.targetVersion] === true;
+                    mod.checked = true;
+                    mod.checking = false;
+                    this.saveData(); // Сохраняем состояние проверки
+                },
+
+                async checkAll() {
+                    for (let cat of this.data.categories) {
+                        for (let mod of cat.mods) {
+                            await this.checkMod(mod);
+                            // Небольшая задержка, чтобы красиво обновлялось
+                            await new Promise(r => setTimeout(r, 100));
+                        }
+                    }
+                },
+
+                resetChecks() {
+                    this.data.categories.forEach(c => c.mods.forEach(m => {
+                        m.checked = false;
+                    }));
+                },
+
+                async saveData() {
+                    await fetch('/api/save', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(this.data)
+                    });
+                },
+
+                exportList() {
+                    // Генерируем простой список ссылок
+                    let text = "";
+                    this.data.categories.forEach(c => {
+                        c.mods.forEach(m => {
+                            if (m.supported) text += `https://modrinth.com/mod/${m.slug}\n`;
+                        });
+                    });
+                    return text || "Список ссылок появится здесь...";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
