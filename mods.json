@@ -533,9 +533,681 @@
             "1.21.11": true,
             "1.21.4": true
           }
+        },
+        {
+          "title": "Universal Graves",
+          "slug": "universal-graves",
+          "icon_url": "https://cdn.modrinth.com/data/yn9u3ypm/a933032aa191fdc43cd439074f5713f8351e7af9.png",
+          "client_side": "unsupported",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Very Many Players (Fabric)",
+          "slug": "vmp-fabric",
+          "icon_url": "https://cdn.modrinth.com/data/wnEe9KBa/0bb4b66e80c6cca9c37f6f1021a94670d6f820dc_96.webp",
+          "client_side": "optional",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Structory",
+          "slug": "structory",
+          "icon_url": "https://cdn.modrinth.com/data/aKCwCJlY/81c79a9d58c605ad79c4a8da15c865902bec8d42_96.webp",
+          "client_side": "unsupported",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Structory: Towers",
+          "slug": "structory-towers",
+          "icon_url": "https://cdn.modrinth.com/data/j3FONRYr/e7d6877a7b7a03680383fd1a1fdd3496604e372a_96.webp",
+          "client_side": "unsupported",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "ClickThrough Plus",
+          "slug": "clickthrough+",
+          "icon_url": "https://cdn.modrinth.com/data/fJi8nm80/5ea9aeeb89e08524310ae9e6b71f793e2ba63e0f_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Easy Anvils",
+          "slug": "easy-anvils",
+          "icon_url": "https://cdn.modrinth.com/data/OZBR5JT5/c317debbe36e008daa3a0af715adf615b365aa5c_96.webp",
+          "client_side": "required",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Sit!",
+          "slug": "sit!",
+          "icon_url": "https://cdn.modrinth.com/data/EsYqsGV4/71461cf2b1d553f5d7217e1cabf03bf4e1e350f4.png",
+          "client_side": "unsupported",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Veinminer",
+          "slug": "veinminer",
+          "icon_url": "https://cdn.modrinth.com/data/OhduvhIc/f9c333a18b2c11a5fb063de8e86dba8b76094c66.png",
+          "client_side": "unknown",
+          "server_side": "unknown",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "LambDynamicLights - Dynamic Lights",
+          "slug": "lambdynamiclights",
+          "icon_url": "https://cdn.modrinth.com/data/yBW8D80W/d4f5c3ff8df7caf024178b04eca6d69f95979cfe_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Clumps",
+          "slug": "clumps",
+          "icon_url": "https://cdn.modrinth.com/data/Wnxd13zP/6a965bb7974c3e759a53a1c89c35de4acd4cf86a_96.webp",
+          "client_side": "optional",
+          "server_side": "optional",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "EMI",
+          "slug": "emi",
+          "icon_url": "https://cdn.modrinth.com/data/fRiHVvU7/395fe5302b2bab612ef0623509f768f3c5a5ee0f.webp",
+          "client_side": "required",
+          "server_side": "optional",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          },
+          "checking": false
+        },
+        {
+          "title": "Visual Workbench",
+          "slug": "visual-workbench",
+          "icon_url": "https://cdn.modrinth.com/data/kfqD1JRw/e56a31e890d21c82cc454593e023df09f5ae3c36_96.webp",
+          "client_side": "required",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Roughly Enough Items (REI)",
+          "slug": "rei",
+          "icon_url": "https://cdn.modrinth.com/data/nfn13YXA/54ac5daa4166011bae713448e84413987316433a_96.webp",
+          "client_side": "optional",
+          "server_side": "optional",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Just Enough Items (JEI)",
+          "slug": "jei",
+          "icon_url": "https://cdn.modrinth.com/data/u6dRKJwZ/4a3f18ac0d096c9f8e9176984c44be4e58f94c89_96.webp",
+          "client_side": "optional",
+          "server_side": "optional",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": false
+          },
+          "checking": false
+        },
+        {
+          "title": "Dynamic Crosshair",
+          "slug": "dynamiccrosshair",
+          "icon_url": "https://cdn.modrinth.com/data/ZcR9weSm/8da8af58ca961f937bd05d41dcefa26be7b5c182.png",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Lootr",
+          "slug": "lootr",
+          "icon_url": "https://cdn.modrinth.com/data/EltpO5cN/3dc915eb1bbcd65654c17eb3870de4aba055d0c6_96.webp",
+          "client_side": "required",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "FastQuit",
+          "slug": "fastquit",
+          "icon_url": "https://cdn.modrinth.com/data/x1hIzbuY/930154d1ed3e855079c5f6ee63faeb9bcbe87cfd_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Euphoria Patches",
+          "slug": "euphoria-patches",
+          "icon_url": "https://cdn.modrinth.com/data/4H6sumDB/437130f3f10997f720ff0b788cb24cde3b3b8541.png",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Fast IP Ping",
+          "slug": "fast-ip-ping",
+          "icon_url": "https://cdn.modrinth.com/data/9mtu0sUO/dca186a8a57d45ad06e88de6cfc45d4cc4c6a0ba.png",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Item Highlighter",
+          "slug": "item-highlighter",
+          "icon_url": "https://cdn.modrinth.com/data/cVNW5lr6/5e15f8c53ea36ca5391cdd9bbdea33261fa4c18d_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Eating Animation",
+          "slug": "eating-animation",
+          "icon_url": "https://cdn.modrinth.com/data/rUgZvGzi/3728bc0dd14ce1ec84599f9dad43aa5fbcfbef2a.gif",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          },
+          "checking": false
+        },
+        {
+          "title": "InvMove",
+          "slug": "invmove",
+          "icon_url": "https://cdn.modrinth.com/data/REfW2AEX/24c63fa80c1e94bc45ca600ba9e0993ff91d289b_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Chat Animation [Smooth Chat]",
+          "slug": "chatanimation",
+          "icon_url": "https://cdn.modrinth.com/data/DnNYdJsx/f6b2002ed12e72c4d74d56b80fe768ae96cd4d24_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Make Bubbles Pop",
+          "slug": "make_bubbles_pop",
+          "icon_url": "https://cdn.modrinth.com/data/gPCdW0Wr/4616c50230e3e716f02127a0e74f250470a07e85.png",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Durability Tooltip",
+          "slug": "durability-tooltip",
+          "icon_url": "https://cdn.modrinth.com/data/smUP7V3r/icon.png",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Sounds",
+          "slug": "sound",
+          "icon_url": "https://cdn.modrinth.com/data/ZouiUX7t/b6ae84ea14654245f58856722473afeddf72360c_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Leaves Be Gone",
+          "slug": "leaves-be-gone",
+          "icon_url": "https://cdn.modrinth.com/data/AVq17PqV/72915db87281bf57b62cc4ec7dc9ea75865b2f5f_96.webp",
+          "client_side": "unsupported",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "FallingTree",
+          "slug": "fallingtree",
+          "icon_url": "https://cdn.modrinth.com/data/Fb4jn8m6/02610e2f41e1a4ea06b36ad5034be2b3d03b8f88_96.webp",
+          "client_side": "optional",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Do a Barrel Roll",
+          "slug": "do-a-barrel-roll",
+          "icon_url": "https://cdn.modrinth.com/data/6FtRfnLg/adc87c81f55b75a07d29349452c1c8da0ad925a4_96.webp",
+          "client_side": "required",
+          "server_side": "optional",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Client Tweaks",
+          "slug": "client-tweaks",
+          "icon_url": "https://cdn.modrinth.com/data/vPNqo58Q/a9144fbd356f92c39be0e5b70d73136ac37fe0f6_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Fabric Seasons",
+          "slug": "fabric-seasons",
+          "icon_url": "https://cdn.modrinth.com/data/KJe6y9Eu/7ce47fcb4242493ad069789298400b14f27737ad.png",
+          "client_side": "optional",
+          "server_side": "optional",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          },
+          "checking": false
+        },
+        {
+          "title": "Fabric Seasons: Terralith Compat",
+          "slug": "fabric-seasons-terralith-compat",
+          "icon_url": "https://cdn.modrinth.com/data/D53qveoj/5515c1d64e73c848b19af739f0743524f2370750.png",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          },
+          "checking": false
+        },
+        {
+          "title": "Traveler's Titles",
+          "slug": "travelers-titles",
+          "icon_url": "https://cdn.modrinth.com/data/JtifUr64/e7743f2d78a52a1af0ebe5aacbfa940094c63dff_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Smooth Scrolling",
+          "slug": "smooth-scroll",
+          "icon_url": "https://cdn.modrinth.com/data/CllP7wW0/6d787d5cd5fface4fe9a5f6ce0770576bca09132.png",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Resourcify",
+          "slug": "resourcify",
+          "icon_url": "https://cdn.modrinth.com/data/RLzHAoZe/a353989ea9f0f124ebe7cf3e67274c2d72751431_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Overflowing Bars",
+          "slug": "overflowing-bars",
+          "icon_url": "https://cdn.modrinth.com/data/XD7XOrAF/cf44cdc731da7eb473b9e682b74b9c9bbdb49ce4_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Resource Pack Overrides",
+          "slug": "resource-pack-overrides",
+          "icon_url": "https://cdn.modrinth.com/data/YsFycamt/e7e3f23803e72f3e3b480c15f640a8f93a60bcb4_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Effect Insights",
+          "slug": "effect-insights",
+          "icon_url": "https://cdn.modrinth.com/data/Kw73iLDq/ef617b6ea3452e188350567cce2ebb7c3ab7b809_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Carpet",
+          "slug": "carpet",
+          "icon_url": "https://cdn.modrinth.com/data/TQTTVgYE/3ad650635d067b6bfa09403cf5e70e0947a05c07_96.webp",
+          "client_side": "optional",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Show Me Your Skin!",
+          "slug": "show-me-your-skin",
+          "icon_url": "https://cdn.modrinth.com/data/bD7YqcA3/icon.png",
+          "client_side": "required",
+          "server_side": "optional",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          },
+          "checking": false
+        },
+        {
+          "title": "Dynamic Surroundings",
+          "slug": "dynamicsurroundingsfabric",
+          "icon_url": "https://cdn.modrinth.com/data/H7fshfpD/32645cba83aa040ff7d803ae97f7709251abaeb0_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          },
+          "checking": false
+        },
+        {
+          "title": "Bridging Mod",
+          "slug": "bridging-mod",
+          "icon_url": "https://cdn.modrinth.com/data/lO3s8hjs/1796c63ace243a670a9a9e4a40265aaf3773b2c9_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Dark Loading Screen",
+          "slug": "dark-loading-screen",
+          "icon_url": "https://cdn.modrinth.com/data/h3XWIuzM/icon.png",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Snow Under Trees (Fabric)",
+          "slug": "snow-under-trees-remastered",
+          "icon_url": "https://cdn.modrinth.com/data/XVnUIUAQ/6dc361a058fdfe50a0e6bb720a5d27a174031d0b_96.webp",
+          "client_side": "unsupported",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Healing Campfire",
+          "slug": "healing-campfire",
+          "icon_url": "https://cdn.modrinth.com/data/kOuPUitF/b85e2aa910202cffc6a5b9569dbd578480decad8_96.webp",
+          "client_side": "unsupported",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Bow Infinity Fix",
+          "slug": "bow-infinity-fix",
+          "icon_url": "https://cdn.modrinth.com/data/BFENfScW/3e19b53b2edb27bea27cb0fb2864a5f3ae7a5f4f.png",
+          "client_side": "optional",
+          "server_side": "required",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "DashLoader",
+          "slug": "dashloader",
+          "icon_url": "https://cdn.modrinth.com/data/ZfQ3kTvR/e54e16beca9968dafed295e4fba06273a09045a1_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Seamless",
+          "slug": "seamless",
+          "icon_url": "https://cdn.modrinth.com/data/rhyHyQke/484896a8e84bbe8dc6dbc6ddd0ac97ccb0fb1811_96.webp",
+          "client_side": "required",
+          "server_side": "unsupported",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": true
+          },
+          "checking": false
         }
       ],
-      "name": "Supported",
+      "name": "Supported 1.21.11",
       "showExport": false
     },
     {
