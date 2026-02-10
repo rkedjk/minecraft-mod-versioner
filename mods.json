@@ -16,69 +16,201 @@
           }
         },
         {
-          "title": "Auditory Continued",
-          "slug": "auditory-continued",
-          "icon_url": "https://cdn.modrinth.com/data/UafsfA4K/d590a7fe2e9ff5c2bba2fa25b06258f45a18a87d_96.webp",
           "checked": true,
-          "versions": {
-            "1.21.1": true,
-            "1.21.11": false,
-            "1.21.4": false
-          },
-          "checking": false
-        },
-        {
-          "title": "Visuality",
-          "slug": "visuality",
+          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/rI0hvYcd/5c866549318e907bbfe0d525afe43cb17a36a481.png",
-          "checked": true,
+          "slug": "visuality",
+          "title": "Visuality",
           "versions": {
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          },
-          "checking": false
+          }
         },
         {
-          "title": "Effective",
-          "slug": "effective",
-          "icon_url": "https://cdn.modrinth.com/data/pcPXJeZi/f139dfec708b7db41de0efa3da0e7989de9b4c3a_96.webp",
           "checked": true,
-          "versions": {
-            "1.21.1": true,
-            "1.21.11": false,
-            "1.21.4": false
-          },
-          "checking": false
-        },
-        {
-          "title": "Wakes",
-          "slug": "wakes",
-          "icon_url": "https://cdn.modrinth.com/data/dlNu0RQY/46be95a28f27da8a98e9721b6695703fcec2d7d8_96.webp",
-          "checked": true,
-          "versions": {
-            "1.21.1": true,
-            "1.21.11": false,
-            "1.21.4": true
-          },
-          "checking": false
-        },
-        {
-          "title": "Not Enough Animations",
-          "slug": "not-enough-animations",
+          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/MPCX6s5C/b97fd5f7a893165052408b747286d6eb38d57abb_96.webp",
-          "checked": true,
+          "slug": "not-enough-animations",
+          "title": "Not Enough Animations",
           "versions": {
             "1.21.1": true,
             "1.21.11": true,
             "1.21.4": true
-          },
-          "checking": false
+          }
         },
         {
-          "title": "Falling Leaves",
-          "slug": "fallingleaves",
+          "checked": true,
+          "checking": false,
           "icon_url": "https://cdn.modrinth.com/data/WhbRG4iK/58f5b66cb54787d9c25228d667f61144371c3867_96.webp",
+          "slug": "fallingleaves",
+          "title": "Falling Leaves",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/zV5r3pPn/ff7010d4ec0275609866c8b0f603b25e25949c08_96.webp",
+          "slug": "3dskinlayers",
+          "title": "3D Skin Layers",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/nrikgvxm/e637304d1bec07c39e833d810aa4bdbb9703bf95_96.webp",
+          "slug": "particle-rain",
+          "title": "Particle Rain",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/rcTfTZr3/c08dc581f0bf3b729f86e962fa800463af86e9a2_96.webp",
+          "slug": "presence-footsteps",
+          "title": "Presence Footsteps",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/fM515JnW/9a8eca9c055ec1dd753a7209210fcb22a2d40ff7_96.webp",
+          "slug": "ambientsounds",
+          "title": "AmbientSounds",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/qyVF9oeo/798fbfae58ec95ad51f3e1d522b43227306c326c.png",
+          "slug": "sound-physics-remastered",
+          "title": "Sound Physics Remastered",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/T8MMXTpr/d338decae13e71b934605932901921c4d72b8b6f_96.webp",
+          "slug": "dripsounds",
+          "title": "Drip Sounds",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/O7RBXm3n/04cdecd37b4c7409f70d36fcdc85722ebf14aab8_96.webp",
+          "slug": "inventory-profiles-next",
+          "title": "Inventory Profiles Next",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/aC3cM3Vq/6c0eaa4e60a9c87f4766f222ff63286f09da32c0_96.webp",
+          "slug": "mouse-tweaks",
+          "title": "Mouse Tweaks",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/u5Ic2U1u/icon.png",
+          "slug": "mouse-wheelie",
+          "title": "Mouse Wheelie",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/ydZic5r4/2d949628d59149ec28c08f50f61d2984dd81ecbb_96.webp",
+          "slug": "smooth-swapping",
+          "title": "Smooth Swapping",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/NK39zBp2/1bb976c95042f20f26e27e6c4eb9e359e45d5002.webp",
+          "slug": "blur-plus",
+          "title": "Blur+",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/9NM0dXub/bb63f53585dd34679781c9964874dce8acdf6d26_96.webp",
+          "slug": "advancement-plaques",
+          "title": "Advancement Plaques",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": true
+          }
+        },
+        {
+          "title": "Legendary Tooltips",
+          "slug": "legendary-tooltips",
+          "icon_url": "https://cdn.modrinth.com/data/atHH8NyV/bd47257c8d4aca0e04c43269e5beb7af680b144b_96.webp",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Jade 🔍",
+          "slug": "jade",
+          "icon_url": "https://cdn.modrinth.com/data/nvQzSEkH/b04217bc2b7dc524c4d12f81ff42cc1cefb9b0fc_96.webp",
           "checked": true,
           "versions": {
             "1.21.1": true,
@@ -88,9 +220,81 @@
           "checking": false
         },
         {
-          "title": "3D Skin Layers",
-          "slug": "3dskinlayers",
-          "icon_url": "https://cdn.modrinth.com/data/zV5r3pPn/ff7010d4ec0275609866c8b0f603b25e25949c08_96.webp",
+          "title": "AppleSkin",
+          "slug": "appleskin",
+          "icon_url": "https://cdn.modrinth.com/data/EsAfCjCV/icon.png",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Smooth Gui",
+          "slug": "smooth-gui",
+          "icon_url": "https://cdn.modrinth.com/data/j6yrZogB/3394d2befe98b3fb21b1380dd6144f5abb0730c3_96.webp",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Camera Overhaul",
+          "slug": "cameraoverhaul",
+          "icon_url": "https://cdn.modrinth.com/data/m0oRwcZx/bebf0a98167f737c643abe85382a7ec14d264cbf.png",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Better Third Person",
+          "slug": "better-third-person",
+          "icon_url": "https://cdn.modrinth.com/data/G1s2WpNo/icon.png",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "RightClickHarvest",
+          "slug": "rightclickharvest",
+          "icon_url": "https://cdn.modrinth.com/data/Cnejf5xM/b6e535989217836c2adc49b06f4b3c8f429afda3_96.webp",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Controlify (Controller support)",
+          "slug": "controlify",
+          "icon_url": "https://cdn.modrinth.com/data/DOUdJVEm/5a6c126c4c761ba3e8e9d3ef09a68e16ff60ff22_96.webp",
+          "checked": true,
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": true,
+            "1.21.4": true
+          },
+          "checking": false
+        },
+        {
+          "title": "Terralith",
+          "slug": "terralith",
+          "icon_url": "https://cdn.modrinth.com/data/8oi3bsk5/1959d924a1088944bbf07a06ba523726112d7e7a_96.webp",
           "checked": true,
           "versions": {
             "1.21.1": true,
@@ -100,11 +304,74 @@
           "checking": false
         }
       ],
-      "name": "New Category"
+      "name": "Supported",
+      "showExport": false
     },
     {
-      "name": "New Category",
-      "mods": []
+      "mods": [
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/dlNu0RQY/46be95a28f27da8a98e9721b6695703fcec2d7d8_96.webp",
+          "slug": "wakes",
+          "title": "Wakes",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": true
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/pcPXJeZi/f139dfec708b7db41de0efa3da0e7989de9b4c3a_96.webp",
+          "slug": "effective",
+          "title": "Effective",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/UafsfA4K/d590a7fe2e9ff5c2bba2fa25b06258f45a18a87d_96.webp",
+          "slug": "auditory-continued",
+          "title": "Auditory Continued",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/Zf8HMFM5/ad4d2dc2c85d7e94bb853dd0269a48dbbd60b293_96.webp",
+          "slug": "satisfying-buttons",
+          "title": "Satisfying Buttons",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          }
+        },
+        {
+          "checked": true,
+          "checking": false,
+          "icon_url": "https://cdn.modrinth.com/data/jv7tzVE4/aac60640bfd4a44890f075aea150fac41e698da4_96.webp",
+          "slug": "extrasoundsforge",
+          "title": "ExtraSounds Next",
+          "versions": {
+            "1.21.1": true,
+            "1.21.11": false,
+            "1.21.4": false
+          }
+        }
+      ],
+      "name": "Unsupported",
+      "showExport": false
     }
   ],
   "targetVersions": [

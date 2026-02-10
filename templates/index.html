@@ -9,6 +9,11 @@
     <style>
         [x-cloak] { display: none !important; }
         .scroll-hide::-webkit-scrollbar { display: none; }
+        .drag-over {
+            border-color: #3b82f6 !important;
+            background: rgba(59, 130, 246, 0.1) !important;
+        }
+        .dragging { opacity: 0.5; }
     </style>
 </head>
 <body class="bg-slate-900 text-slate-200 min-h-screen font-sans"
@@ -21,16 +26,18 @@
                 <i class="fa-solid fa-cube"></i> ModStacker
             </h1>
 
-            <button @click="saveData()" class="px-4 py-2 bg-green-600 hover:bg-green-500 rounded text-sm font-bold transition">
-                <i class="fa-solid fa-save"></i> Сохранить
-            </button>
+            <div class="flex gap-2 items-center">
+                <span class="text-xs text-slate-500" x-show="isSaving">Сохранение...</span>
+                <button @click="saveData()" class="px-4 py-2 bg-green-600 hover:bg-green-500 rounded text-sm font-bold transition">
+                    <i class="fa-solid fa-save"></i> Сохранить
+                </button>
+            </div>
         </div>
 
         <!-- Управление версиями -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 flex-wrap">
             <span class="text-sm text-slate-400 font-semibold">Проверяемые версии:</span>
 
-            <!-- Список выбранных версий -->
             <div class="flex gap-2 flex-wrap items-center">
                 <template x-for="(ver, idx) in targetVersions" :key="ver">
                     <div class="flex items-center gap-1 bg-blue-600 px-2 py-1 rounded text-xs font-mono">
@@ -41,7 +48,6 @@
                     </div>
                 </template>
 
-                <!-- Форма добавления новой версии -->
                 <div class="flex gap-1 items-center">
                     <input type="text"
                            x-model="newVersion"
@@ -54,7 +60,6 @@
                 </div>
             </div>
 
-            <!-- Кнопка сброса проверок -->
             <button @click="resetChecks()" class="ml-auto text-xs text-slate-500 hover:text-slate-300 transition">
                 <i class="fa-solid fa-rotate"></i> Сбросить проверки
             </button>
@@ -72,20 +77,54 @@
                     <div class="p-4 bg-slate-800/50 flex justify-between items-center border-b border-slate-700">
                         <h2 class="text-lg font-semibold flex items-center gap-2">
                             <i class="fa-solid fa-folder-open text-yellow-500"></i>
-                            <input x-model="cat.name" class="bg-transparent outline-none focus:text-blue-400" placeholder="Category Name">
+                            <input x-model="cat.name"
+                                   @input="saveData()"
+                                   class="bg-transparent outline-none focus:text-blue-400"
+                                   placeholder="Category Name">
                         </h2>
-                        <button @click="deleteCategory(catIndex)" class="text-red-500 hover:text-red-400 opacity-50 hover:opacity-100">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
+                        <div class="flex gap-2 items-center">
+                            <!-- Кнопка экспорта для категории -->
+                            <button @click="cat.showExport = !cat.showExport"
+                                    class="text-blue-400 hover:text-blue-300 text-sm transition">
+                                <i class="fa-solid fa-file-export"></i> Export
+                            </button>
+                            <button @click="deleteCategory(catIndex)"
+                                    class="text-red-500 hover:text-red-400 opacity-50 hover:opacity-100">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- Список модов в категории -->
-                    <div class="p-2 space-y-1">
+                    <!-- Панель экспорта (сворачиваемая) -->
+                    <div x-show="cat.showExport"
+                         x-collapse
+                         class="p-4 bg-slate-900/50 border-b border-slate-700">
+                        <div class="text-xs text-slate-500 mb-2 uppercase font-bold">
+                            Ссылки на совместимые моды из "<span x-text="cat.name"></span>"
+                        </div>
+                        <textarea readonly
+                                  class="w-full h-24 bg-slate-900 rounded p-2 text-xs font-mono text-slate-400 border border-slate-700 resize-none focus:border-blue-500 outline-none"
+                                  @click="$el.select()"
+                                  x-text="exportCategory(cat)"></textarea>
+                    </div>
+
+                    <!-- Зона дропа для модов -->
+                    <div class="p-2 space-y-1 min-h-[100px]"
+                         @dragover.prevent="$el.classList.add('drag-over')"
+                         @dragleave="$el.classList.remove('drag-over')"
+                         @drop="handleDrop($event, catIndex); $el.classList.remove('drag-over')">
+
                         <template x-for="(mod, modIndex) in cat.mods" :key="mod.slug">
-                            <div class="group flex items-center justify-between p-3 rounded-lg hover:bg-slate-700 transition border border-transparent hover:border-slate-600">
+                            <div class="group flex items-center justify-between p-3 rounded-lg hover:bg-slate-700 transition border border-transparent hover:border-slate-600 cursor-move"
+                                 draggable="true"
+                                 @dragstart="handleDragStart($event, catIndex, modIndex)"
+                                 @dragend="$el.classList.remove('dragging')">
+
                                 <!-- Левая часть: иконка и название -->
                                 <div class="flex items-center gap-3 flex-shrink-0">
-                                    <img :src="mod.icon_url || 'https://cdn.modrinth.com/user/icon/placeholder.png'" class="w-10 h-10 rounded">
+                                    <i class="fa-solid fa-grip-vertical text-slate-600 group-hover:text-slate-500"></i>
+                                    <img :src="mod.icon_url || 'https://cdn.modrinth.com/data/AANobbMI/icon.png'"
+                                         class="w-10 h-10 rounded">
                                     <div>
                                         <div class="font-bold leading-tight" x-text="mod.title"></div>
                                         <div class="text-xs text-slate-500 font-mono" x-text="mod.slug"></div>
@@ -129,7 +168,8 @@
                         </template>
 
                         <!-- Пустая категория -->
-                        <div x-show="cat.mods.length === 0" class="text-center p-4 text-slate-600 italic text-sm">
+                        <div x-show="cat.mods.length === 0" class="text-center p-8 text-slate-600 italic text-sm">
+                            <i class="fa-solid fa-inbox text-3xl mb-2 opacity-30"></i><br>
                             Перетащите сюда моды или добавьте через поиск
                         </div>
                     </div>
@@ -154,17 +194,21 @@
                 </div>
 
                 <!-- Результаты поиска -->
-                <div class="mt-4 space-y-2 max-h-[60vh] overflow-y-auto pr-1 scroll-hide">
+                <div class="mt-4 space-y-2 max-h-[50vh] overflow-y-auto pr-1 scroll-hide">
                     <template x-for="result in searchResults" :key="result.slug">
-                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-700 flex gap-3 hover:border-blue-500 transition group cursor-pointer"
+                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-700 hover:border-blue-500 transition group cursor-move relative"
+                             draggable="true"
+                             @dragstart="handleSearchDragStart($event, result)"
                              @click="addToCategory(result)">
-                            <img :src="result.icon_url" class="w-10 h-10 rounded bg-slate-800">
-                            <div class="flex-1">
-                                <div class="font-bold text-sm" x-text="result.title"></div>
-                                <div class="text-xs text-slate-500 line-clamp-1" x-text="result.description"></div>
+                            <div class="flex gap-3">
+                                <img :src="result.icon_url" class="w-10 h-10 rounded bg-slate-800 flex-shrink-0">
+                                <div class="flex-1 min-w-0">
+                                    <div class="font-bold text-sm truncate" x-text="result.title"></div>
+                                    <div class="text-xs text-slate-500 line-clamp-2" x-text="result.description"></div>
+                                </div>
                             </div>
-                            <div class="flex items-center">
-                                <i class="fa-solid fa-plus text-blue-500 opacity-0 group-hover:opacity-100 transition"></i>
+                            <div class="absolute top-2 right-2 bg-blue-600 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-plus"></i>
                             </div>
                         </div>
                     </template>
@@ -177,22 +221,24 @@
             </div>
 
             <!-- Кнопка массовой проверки -->
-            <div class="mt-4">
+            <div class="mt-4 space-y-2">
                 <button @click="checkAll()"
-                        :disabled="targetVersions.length === 0"
-                        class="w-full py-3 rounded-xl font-bold transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                        :disabled="targetVersions.length === 0 || isCheckingAll"
+                        class="w-full py-3 rounded-xl font-bold transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed relative"
                         :class="targetVersions.length > 0 ? 'bg-blue-600 hover:bg-blue-500 shadow-blue-900/20' : 'bg-slate-700'">
-                    <i class="fa-solid fa-list-check"></i> Проверить ВСЕ моды
+                    <span x-show="!isCheckingAll">
+                        <i class="fa-solid fa-list-check"></i> Проверить ВСЕ моды
+                    </span>
+                    <span x-show="isCheckingAll" class="flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        <span x-text="checkProgress"></span>
+                    </span>
                 </button>
-            </div>
 
-            <!-- Экспорт -->
-            <div class="mt-4">
-                <div class="text-xs text-slate-500 mb-2 uppercase font-bold">Экспорт (только совместимые)</div>
-                <textarea readonly
-                          class="w-full h-32 bg-slate-800 rounded-xl p-3 text-xs font-mono text-slate-400 border border-slate-700 resize-none focus:border-blue-500 outline-none"
-                          @click="$el.select()"
-                          x-text="exportList()"></textarea>
+                <!-- Индикатор Rate Limit -->
+                <div class="text-xs text-center text-slate-500" x-show="apiDelay > 0">
+                    <i class="fa-solid fa-clock"></i> Защита API: задержка <span x-text="apiDelay"></span>мс между запросами
+                </div>
             </div>
         </div>
     </div>
@@ -205,24 +251,36 @@
                 searchQuery: '',
                 searchResults: [],
                 isSearching: false,
-                targetVersions: ['1.21.1', '1.21.2', '1.21.3', '1.21.4'], // Начальные версии
+                isSaving: false,
+                isCheckingAll: false,
+                checkProgress: '',
+                targetVersions: ['1.21.1', '1.21.2', '1.21.3', '1.21.4'],
                 newVersion: '',
+                draggedMod: null,
+                draggedFromCategory: null,
+                apiDelay: 200, // Задержка между запросами в миллисекундах
+                apiCache: {}, // Кэш для результатов API
 
                 async initApp() {
                     const resp = await fetch('/api/data');
                     this.data = await resp.json();
 
-                    // Загружаем сохраненные версии, если есть
                     if (this.data.targetVersions) {
                         this.targetVersions = this.data.targetVersions;
                     }
+
+                    // Инициализируем showExport для всех категорий
+                    this.data.categories.forEach(cat => {
+                        if (cat.showExport === undefined) {
+                            cat.showExport = false;
+                        }
+                    });
                 },
 
                 addVersion() {
                     const ver = this.newVersion.trim();
                     if (!ver) return;
 
-                    // Проверка формата (например, 1.21.5)
                     if (!/^\d+\.\d+(\.\d+)?$/.test(ver)) {
                         alert('Неверный формат версии! Используйте формат: 1.21.5');
                         return;
@@ -234,8 +292,9 @@
                     }
 
                     this.targetVersions.push(ver);
+                    this.targetVersions.sort(); // Сортируем версии
                     this.newVersion = '';
-                    this.resetChecks(); // Сбрасываем проверки при изменении версий
+                    this.resetChecks();
                     this.saveData();
                 },
 
@@ -257,7 +316,11 @@
                 },
 
                 addCategory() {
-                    this.data.categories.push({ name: 'New Category', mods: [] });
+                    this.data.categories.push({
+                        name: 'New Category',
+                        mods: [],
+                        showExport: false
+                    });
                     this.saveData();
                 },
 
@@ -268,7 +331,7 @@
                     }
                 },
 
-                addToCategory(mod) {
+                addToCategory(mod, targetCatIndex = 0) {
                     if (this.data.categories.length === 0) this.addCategory();
 
                     const exists = this.data.categories.some(c => c.mods.some(m => m.slug === mod.slug));
@@ -277,21 +340,67 @@
                         return;
                     }
 
-                    this.data.categories[0].mods.push({
+                    this.data.categories[targetCatIndex].mods.push({
                         title: mod.title,
                         slug: mod.slug,
                         icon_url: mod.icon_url,
                         checked: false,
-                        versions: {}, // Объект вида {"1.21.1": true, "1.21.2": false}
+                        versions: {},
                         checking: false
                     });
 
                     this.searchQuery = '';
                     this.searchResults = [];
 
-                    // Автоматически проверяем новый мод
-                    const addedMod = this.data.categories[0].mods[this.data.categories[0].mods.length - 1];
+                    const addedMod = this.data.categories[targetCatIndex].mods[
+                        this.data.categories[targetCatIndex].mods.length - 1
+                    ];
                     this.checkMod(addedMod);
+                },
+
+                // Drag & Drop handlers
+                handleDragStart(event, catIndex, modIndex) {
+                    this.draggedMod = this.data.categories[catIndex].mods[modIndex];
+                    this.draggedFromCategory = catIndex;
+                    event.target.classList.add('dragging');
+                    event.dataTransfer.effectAllowed = 'move';
+                },
+
+                handleSearchDragStart(event, mod) {
+                    this.draggedMod = mod;
+                    this.draggedFromCategory = null; // Из поиска
+                    event.dataTransfer.effectAllowed = 'copy';
+                },
+
+                handleDrop(event, targetCatIndex) {
+                    event.preventDefault();
+
+                    if (!this.draggedMod) return;
+
+                    // Если из поиска
+                    if (this.draggedFromCategory === null) {
+                        this.addToCategory(this.draggedMod, targetCatIndex);
+                    } else {
+                        // Если перемещение между категориями
+                        const exists = this.data.categories[targetCatIndex].mods.some(
+                            m => m.slug === this.draggedMod.slug
+                        );
+
+                        if (!exists && targetCatIndex !== this.draggedFromCategory) {
+                            // Удаляем из старой категории
+                            const modIndex = this.data.categories[this.draggedFromCategory].mods.findIndex(
+                                m => m.slug === this.draggedMod.slug
+                            );
+                            this.data.categories[this.draggedFromCategory].mods.splice(modIndex, 1);
+
+                            // Добавляем в новую
+                            this.data.categories[targetCatIndex].mods.push(this.draggedMod);
+                            this.saveData();
+                        }
+                    }
+
+                    this.draggedMod = null;
+                    this.draggedFromCategory = null;
                 },
 
                 async checkMod(mod) {
@@ -303,6 +412,19 @@
                     mod.checking = true;
 
                     try {
+                        // Проверяем кэш
+                        const cacheKey = `${mod.slug}_${this.targetVersions.join('_')}`;
+
+                        if (this.apiCache[cacheKey]) {
+                            mod.versions = this.apiCache[cacheKey];
+                            mod.checked = true;
+                            mod.checking = false;
+                            return;
+                        }
+
+                        // Задержка для защиты от rate limit
+                        await new Promise(r => setTimeout(r, this.apiDelay));
+
                         const resp = await fetch('/api/check_version', {
                             method: 'POST',
                             headers: {'Content-Type': 'application/json'},
@@ -311,9 +433,13 @@
                                 versions: this.targetVersions
                             })
                         });
+
                         const result = await resp.json();
 
-                        mod.versions = result; // Сохраняем объект {"1.21.1": true, ...}
+                        // Сохраняем в кэш
+                        this.apiCache[cacheKey] = result;
+
+                        mod.versions = result;
                         mod.checked = true;
                     } catch (e) {
                         console.error('Error checking mod:', e);
@@ -330,12 +456,23 @@
                         return;
                     }
 
+                    this.isCheckingAll = true;
+                    let total = 0;
+                    let current = 0;
+
+                    // Считаем общее количество
+                    this.data.categories.forEach(c => total += c.mods.length);
+
                     for (let cat of this.data.categories) {
                         for (let mod of cat.mods) {
+                            current++;
+                            this.checkProgress = `${current}/${total}`;
                             await this.checkMod(mod);
-                            await new Promise(r => setTimeout(r, 150)); // Задержка для красоты
                         }
                     }
+
+                    this.isCheckingAll = false;
+                    this.checkProgress = '';
                 },
 
                 resetChecks() {
@@ -343,11 +480,12 @@
                         m.checked = false;
                         m.versions = {};
                     }));
+                    this.apiCache = {}; // Очищаем кэш
                     this.saveData();
                 },
 
                 async saveData() {
-                    // Сохраняем и версии тоже
+                    this.isSaving = true;
                     const payload = {
                         ...this.data,
                         targetVersions: this.targetVersions
@@ -358,27 +496,26 @@
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify(payload)
                     });
+
+                    setTimeout(() => this.isSaving = false, 500);
                 },
 
-                exportList() {
+                exportCategory(category) {
                     if (this.targetVersions.length === 0) {
                         return "Добавьте версии для проверки...";
                     }
 
                     let text = "";
-                    this.data.categories.forEach(cat => {
-                        cat.mods.forEach(mod => {
-                            // Экспортируем только если хотя бы одна версия поддерживается
-                            if (mod.checked && mod.versions) {
-                                const hasSupport = Object.values(mod.versions).some(v => v === true);
-                                if (hasSupport) {
-                                    text += `https://modrinth.com/mod/${mod.slug}\n`;
-                                }
+                    category.mods.forEach(mod => {
+                        if (mod.checked && mod.versions) {
+                            const hasSupport = Object.values(mod.versions).some(v => v === true);
+                            if (hasSupport) {
+                                text += `https://modrinth.com/mod/${mod.slug}\n`;
                             }
-                        });
+                        }
                     });
 
-                    return text || "Список ссылок появится после проверки модов...";
+                    return text || "Проверьте моды в этой категории...";
                 }
             }
         }
