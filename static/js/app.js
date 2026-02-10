@@ -7,7 +7,7 @@ function app() {
         isSaving: false,
         isCheckingAll: false,
         checkProgress: '',
-        targetVersions: ['1.21.1', '1.21.4', '1.21.11'],
+        targetVersions: ['1.21.1', '1.21.4'],
         newVersion: '',
         draggedMod: null,
         draggedFromCategory: null,
@@ -17,61 +17,44 @@ function app() {
         async initApp() {
             const resp = await fetch('/api/data');
             this.data = await resp.json();
-
-            if (this.data.targetVersions) {
-                this.targetVersions = this.data.targetVersions;
-            }
-
-            // Инициализация полей
+            if (this.data.targetVersions) this.targetVersions = this.data.targetVersions;
             this.data.categories.forEach(cat => {
                 if (cat.showExport === undefined) cat.showExport = false;
             });
-
-            // НОВОЕ: Автоматическая подгрузка метаданных для старых модов
             await this.updateMissingMetadata();
         },
 
-        // НОВАЯ ФУНКЦИЯ - обновляет метаданные для модов без client_side/server_side
+        scrollToCategory(index) {
+            const el = document.getElementById('cat-' + index);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        },
+
         async updateMissingMetadata() {
             let needsUpdate = false;
-
             for (let cat of this.data.categories) {
                 for (let mod of cat.mods) {
-                    // Если у мода нет полей окружения - загружаем их
                     if (!mod.client_side || !mod.server_side) {
                         try {
-                            await new Promise(r => setTimeout(r, 150)); // Задержка между запросами
-
+                            await new Promise(r => setTimeout(r, 150));
                             const resp = await fetch(`/api/project/${mod.slug}`);
                             const metadata = await resp.json();
-
                             if (!metadata.error) {
                                 mod.client_side = metadata.client_side;
                                 mod.server_side = metadata.server_side;
-
-                                // Обновляем иконку и название, если они изменились
                                 if (metadata.icon_url) mod.icon_url = metadata.icon_url;
                                 if (metadata.title) mod.title = metadata.title;
-
                                 needsUpdate = true;
                             }
-                        } catch(e) {
-                            console.error(`Failed to load metadata for ${mod.slug}`);
-                        }
+                        } catch(e) {}
                     }
                 }
             }
-
-            // Если были обновления - сохраняем
-            if (needsUpdate) {
-                await this.saveData();
-            }
+            if (needsUpdate) await this.saveData();
         },
 
         addVersion() {
             const ver = this.newVersion.trim();
             if (!ver) return;
-
             if (!/^\d+\.\d+(\.\d+)?$/.test(ver)) {
                 alert('Неверный формат версии! Используйте формат: 1.21.5');
                 return;
@@ -80,35 +63,11 @@ function app() {
                 alert('Эта версия уже добавлена');
                 return;
             }
-
             this.targetVersions.push(ver);
             this.targetVersions.sort();
             this.newVersion = '';
             this.resetChecks();
             this.saveData();
-        },
-
-        getEnvType(mod) {
-            const client = mod.client_side;
-            const server = mod.server_side;
-
-            if (!client && !server) return 'both';
-
-            if (client === 'required' && server === 'unsupported') return 'client';
-            if (client === 'unsupported' && server === 'required') return 'server';
-            if (client === 'required' && server === 'required') return 'both';
-
-            if (client === 'optional' && server === 'optional') return 'optional';
-
-            if ((client === 'required' && server === 'optional') ||
-                (client === 'optional' && server === 'required')) return 'both';
-
-            if (client === 'unsupported' || server === 'unsupported') {
-                if (client === 'required') return 'client';
-                if (server === 'required') return 'server';
-            }
-
-            return 'both';
         },
 
         removeVersion(idx) {
@@ -126,18 +85,12 @@ function app() {
             try {
                 const resp = await fetch(`/api/search?q=${encodeURIComponent(this.searchQuery)}`);
                 this.searchResults = await resp.json();
-            } catch(e) {
-                console.error('Search error:', e);
-            }
+            } catch(e) { console.error(e); }
             this.isSearching = false;
         },
 
         addCategory() {
-            this.data.categories.push({
-                name: 'New Category',
-                mods: [],
-                showExport: false
-            });
+            this.data.categories.push({ name: 'New Category', mods: [], showExport: false });
             this.saveData();
         },
 
@@ -150,12 +103,8 @@ function app() {
 
         addToCategory(mod, targetCatIndex = 0) {
             if (this.data.categories.length === 0) this.addCategory();
-
             const exists = this.data.categories.some(c => c.mods.some(m => m.slug === mod.slug));
-            if (exists) {
-                alert('Этот мод уже добавлен!');
-                return;
-            }
+            if (exists) return;
 
             const client_side = mod.client_side || 'required';
             const server_side = mod.server_side || 'required';
@@ -173,19 +122,16 @@ function app() {
 
             this.searchQuery = '';
             this.searchResults = [];
-
-            const addedMod = this.data.categories[targetCatIndex].mods[
-                this.data.categories[targetCatIndex].mods.length - 1
-            ];
-            this.checkMod(addedMod);
+            const newMod = this.data.categories[targetCatIndex].mods.slice(-1)[0];
+            this.checkMod(newMod);
             this.saveData();
         },
 
         handleDragStart(event, catIndex, modIndex) {
             this.draggedMod = this.data.categories[catIndex].mods[modIndex];
             this.draggedFromCategory = catIndex;
-            event.target.classList.add('dragging');
             event.dataTransfer.effectAllowed = 'move';
+            event.target.style.opacity = '0.5';
         },
 
         handleSearchDragStart(event, mod) {
@@ -201,76 +147,52 @@ function app() {
             if (this.draggedFromCategory === null) {
                 this.addToCategory(this.draggedMod, targetCatIndex);
             } else {
+                if (this.draggedFromCategory === targetCatIndex) return;
                 const exists = this.data.categories[targetCatIndex].mods.some(m => m.slug === this.draggedMod.slug);
-
-                if (!exists && targetCatIndex !== this.draggedFromCategory) {
-                    const modIndex = this.data.categories[this.draggedFromCategory].mods.findIndex(m => m.slug === this.draggedMod.slug);
-                    this.data.categories[this.draggedFromCategory].mods.splice(modIndex, 1);
-                    this.data.categories[targetCatIndex].mods.push(this.draggedMod);
-                    this.saveData();
+                if (!exists) {
+                    const oldCat = this.data.categories[this.draggedFromCategory];
+                    const modIndex = oldCat.mods.findIndex(m => m.slug === this.draggedMod.slug);
+                    if (modIndex > -1) {
+                        oldCat.mods.splice(modIndex, 1);
+                        this.data.categories[targetCatIndex].mods.push(this.draggedMod);
+                        this.saveData();
+                    }
                 }
             }
 
             this.draggedMod = null;
             this.draggedFromCategory = null;
+            document.querySelectorAll('[draggable]').forEach(el => el.style.opacity = '1');
         },
 
         async checkMod(mod) {
-            if (this.targetVersions.length === 0) {
-                alert('Добавьте хотя бы одну версию для проверки');
-                return;
-            }
-
+            if (this.targetVersions.length === 0) { alert('Добавьте версии!'); return; }
             mod.checking = true;
             try {
                 const cacheKey = `${mod.slug}_${this.targetVersions.join('_')}`;
-
                 if (this.apiCache[cacheKey]) {
                     mod.versions = this.apiCache[cacheKey];
-                    mod.checked = true;
-                    mod.checking = false;
-                    return;
-                }
-
-                await new Promise(r => setTimeout(r, this.apiDelay));
-
-                const resp = await fetch('/api/check_version', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ slug: mod.slug, versions: this.targetVersions })
-                });
-
-                const result = await resp.json();
-
-                if (result.error) {
-                    mod.versions = {};
                 } else {
-                    this.apiCache[cacheKey] = result;
-                    mod.versions = result;
+                    await new Promise(r => setTimeout(r, this.apiDelay));
+                    const resp = await fetch('/api/check_version', {
+                        method: 'POST', headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ slug: mod.slug, versions: this.targetVersions })
+                    });
+                    const res = await resp.json();
+                    if (!res.error) { this.apiCache[cacheKey] = res; mod.versions = res; }
                 }
-
                 mod.checked = true;
-            } catch (e) {
-                console.error('Error checking mod:', e);
-                mod.versions = {};
-            } finally {
-                mod.checking = false;
-                this.saveData();
-            }
+            } catch(e) {}
+            mod.checking = false;
+            this.saveData();
         },
 
         async checkAll() {
-            if (this.targetVersions.length === 0) {
-                alert('Добавьте версии для проверки');
-                return;
-            }
-
+            if (this.targetVersions.length === 0) { alert('Добавьте версии!'); return; }
             this.isCheckingAll = true;
             let total = 0;
-            let current = 0;
-
             this.data.categories.forEach(c => total += c.mods.length);
-
+            let current = 0;
             for (let cat of this.data.categories) {
                 for (let mod of cat.mods) {
                     current++;
@@ -278,48 +200,36 @@ function app() {
                     await this.checkMod(mod);
                 }
             }
-
             this.isCheckingAll = false;
-            this.checkProgress = '';
         },
 
         resetChecks() {
-            this.data.categories.forEach(c => c.mods.forEach(m => {
-                m.checked = false;
-                m.versions = {};
-            }));
+            this.data.categories.forEach(c => c.mods.forEach(m => { m.checked = false; m.versions = {}; }));
             this.apiCache = {};
             this.saveData();
         },
 
         async saveData() {
             this.isSaving = true;
-            const payload = { ...this.data, targetVersions: this.targetVersions };
-
             try {
                 await fetch('/api/save', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify({ ...this.data, targetVersions: this.targetVersions })
                 });
-            } catch(e) {
-                console.error('Save error:', e);
-            }
-
+            } catch(e) { console.error(e); }
             setTimeout(() => this.isSaving = false, 500);
         },
 
-        exportCategory(category) {
-            if (this.targetVersions.length === 0) return "Добавьте версии...";
-
+        exportCategory(cat) {
             let text = "";
-            category.mods.forEach(mod => {
+            cat.mods.forEach(mod => {
                 if (mod.checked && mod.versions) {
                     const hasSupport = Object.values(mod.versions).some(v => v === true);
                     if (hasSupport) text += `https://modrinth.com/mod/${mod.slug}\n`;
                 }
             });
-            return text || "Проверьте моды в этой категории...";
+            return text || "No compatible mods.";
         }
     }
 }
