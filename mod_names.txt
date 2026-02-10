@@ -1,0 +1,153 @@
+Physics Mod
+Fresh Animations
+Visuality
+Effective
+Wakes
+Eating Animation
+Not Enough Animations
+Falling Leaves
+Make Bubbles Pop
+3D Skin Layers
+Wavey Capes
+Explosive Enhancement
+Particle Rain
+Presence Footsteps
+AmbientSounds
+Sound Physics Remastered
+Auditory
+ExtraSounds
+Satisfying Buttons
+Drip Sounds
+Inventory Profiles Next
+Mouse Tweaks
+Mouse Wheelie
+Smooth Swapping
+Blur (Fabric)
+Advancement Plaques
+Legendary Tooltips
+Jade
+AppleSkin
+ShulkerBoxTooltip
+Smooth GUI
+Camera Overhaul
+First-person Model
+Better Third Person
+Create
+Farmer's Delight
+Carry On
+Easy Villagers
+RightClickHarvest
+Fast Leaf Decay
+CleanCut
+Controlling
+Chisels & Bits
+Supplementaries
+Tectonic
+Terralith
+Waystones
+Better Clouds
+Snow! Real Magic!
+Continuity
+Sodium
+Iris Shaders
+Indium
+LambDynamicLights
+Distant Horizons
+ETF
+EMF
+ItemPhysic Lite
+Do a Barrel Roll
+Spyglass Improvements
+Zoomify
+Capes
+Pick Up Notifier
+Inventory HUD+
+Better Mount HUD
+Equipment Compare
+Chat Heads
+Held Item Info
+BeehiveInfo
+Status Effect Bars
+Better F3
+World Time
+Raised
+Toast Control
+Advancement Info
+Litematica
+MiniHUD
+Bobby
+Item Scroller
+Fabrishot
+Resourcify
+Mod Menu
+Reese's Sodium Options
+Language Reload
+Cherished Worlds
+Entity Culling
+ImmediatelyFast
+ModernFix
+FerriteCore
+Dynamic FPS
+GSit
+InteractiveChat
+ImageOnMap
+Chunky
+CoreProtect
+Silence Mobs
+Armored Elytra
+Invisible Item Frames
+Anti Enderman Grief
+Player Head Drops
+Ledger
+Styled Chat
+Simple Voice Chat
+View Distance Fix
+Lithium
+Krypton
+Carpet Mod
+Fabric Tailor
+Universal Graves
+Pl3xMap
+Geyser
+Floodgate
+No Chat Reports
+Text Placeholder API
+Phosphor
+Starlight
+C2ME
+Very Many Players
+CrossStitch
+William Wythers' Overhauled Overworld
+Structory
+Structory: Towers
+YUNG's Better Desert Temples
+YUNG's Better Dungeons
+YUNG's Better Mineshafts
+YUNG's Better Ocean Monuments
+YUNG's Better Witch Huts
+YUNG's Bridges
+Bountiful
+Towns and Towers
+Repurposed Structures
+Nullscape
+Incendium
+Leaves Be Gone
+Antisport
+Creeper Confetti
+Dragon Drops Elytra
+Double Shulker Shells
+ClickThrough
+Interactive Books
+Easy Anvils
+Easy Magic
+Stacker
+Anvil Restoration
+Grindstone Sharpening
+Harvest Scythes
+Sitting
+PlayerRoles
+Server Pinger
+Maintenance
+Discord Integration
+Global Data Pack
+Bliss Shader
